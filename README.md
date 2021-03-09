@@ -33,9 +33,10 @@ Esse valores são passados no data embed type do IMG.
 - Width.
 - Height.
 - Alt.
-- data-src. (src do seu iframe)
-- data-embed-type. (onclick, onmouseover, ondelay, onvisible)
+- data-src (src do seu iframe).
+- data-embed-type. (onclick, onmouseover, ondelay, onvisible).
 - data-embed-time (em MS)(Utilizado apenas no tipo ondelay).
+- data-youtube (Passar o ID do vídeo, caso seja Youtube).
 ```
 
 ## ⚙️ Testando para ver se está tudo ok!
