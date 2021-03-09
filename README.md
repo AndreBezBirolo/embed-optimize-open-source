@@ -53,7 +53,13 @@ Ao fazermos nosso embed carregar apenas quando é necessário, isso evita que sc
 
 ## 📌 Versão
 
-v1.0 - 09/03/2021
+v1.1 - Implementado o suporte ao Youtube.
+
+- Um novo data foi criado na tag IMG de forma opcional para indicar se é vídeo do youtube ou não. [data-youtube]
+- Caso haver esse atributo será utilizado a thumbnail do vídeo na imagem. Observação: é importante colocar um src na imagem de carregando ou do seu gosto para não aparecer apenas o texto alternativo até carregar a imagem.
+
+
+v1.0 - Código inicial do projeto.
 
 ## 📄 Licença
 
@@ -62,6 +68,7 @@ Este projeto está sob a licença (Apache License 2.0) - veja o arquivo [LICENSE
 ## 🎁 Considerações finais
 
 * Divulgue a ideia e vamos crescer juntos! 📢
+* Co-criador: Cayman Sistemas.
 
 ---
 por [André Bez Birolo](https://gist.github.com/AndreBezBirolo) 
