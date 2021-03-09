@@ -1,12 +1,13 @@
 function embedOptimize() {
   let alternativeImages = document.querySelectorAll('img.optimized-embed');
   alternativeImages.forEach(function(image) {
-    let type = image.dataset["embedType"],
-        time = image.dataset["embedTime"],
-        title = image.getAttribute("alt"),
-        width = image.getAttribute('width'),
-        height = image.getAttribute('height'),
-        src = image.dataset["src"];
+    let youtubeID = image.dataset["youtube"],
+        type      = image.dataset["embedType"],
+        time      = image.dataset["embedTime"],
+        title     = image.getAttribute("alt"),
+        width     = image.getAttribute('width'),
+        height    = image.getAttribute('height'),
+        src       = image.dataset["src"];
     const iframe = document.createElement('iframe');
     iframe.setAttribute('class', 'optimized-embed');
     iframe.setAttribute('frameborder', '0');
@@ -16,6 +17,9 @@ function embedOptimize() {
     iframe.setAttribute('src', src);
     function generateIframe() {
       image.replaceWith(iframe);
+    }
+    if (image.dataset["youtube"]){
+      image.setAttribute("src", "https://img.youtube.com/vi/"+ youtubeID +"/hqdefault.jpg");
     }
     switch (type) {
       case 'onclick':
