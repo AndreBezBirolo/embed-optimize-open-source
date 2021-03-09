@@ -42,9 +42,9 @@ Esse valores são passados no data embed type do IMG.
 
 Código exemplo em HTML:
 ```
-<img class=".optimized-embed" alt="Meu Iframe" data-embed-type="/type/" data-embed-time="/time/" data-src="https://meuiframe.com.br" width="100" height="100">
+<img class="optimized-embed" alt="Meu Iframe" data-embed-type="/type/" data-embed-time="/time/" data-src="https://meuiframe.com.br" width="100" height="100">
 ```
-
+Observação: existe uma classe especifica que deve ser colocada na tag IMG (optimized-embed).
 
 ## 📦 Resultados
 
