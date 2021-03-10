@@ -68,6 +68,7 @@ Este projeto está sob a licença (Apache License 2.0) - veja o arquivo [LICENSE
 
 ## 🎁 Considerações finais
 
+* Utilizando IFRAME: [Clique aqui](https://github.com/AndreBezBirolo/embed-optimize-open-source/tree/iframeAlternative)
 * Divulgue a ideia e vamos crescer juntos! 📢
 * Co-criador: Cayman Sistemas.
 
