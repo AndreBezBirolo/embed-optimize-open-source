@@ -52,6 +52,19 @@ Código exemplo em HTML:
 
 Ao fazermos nosso embed carregar apenas quando é necessário, isso evita que script's externos atrapalhem o processamento do seu site fazendo com que o processador esteja mais disponivel para o que realmente é vital para o site. 
 
+## 🚀 Exemplos de uso  🚀 
+
+- Utilizando o Google Maps
+Observações: Para obter seu código do maps basta selecionar o ponto no maps, compartilhar, incorporar um mapa e pegar o resultado após ../maps/(código).
+```
+ <iframe title="Meu iframe" width="200" height="200" data-maps="/seu código/" data-background-url="/sua foto de background/"></iframe>
+```
+
+- Utilizando o YouTube
+Observações: O background é gerado automaticamente baseado na thumbnail do vídeo.
+```
+<iframe title="Meu iframe" width="200" height="200" data-youtube="/id do video/" data-youtube-button="/url opcional/" data-background-url="/sua foto de background/"></iframe>
+```
 
 ## 📌 Versão
 
