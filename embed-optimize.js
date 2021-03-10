@@ -3,24 +3,22 @@ function embedOptimize() {
   alternativeImages.forEach(function(image) {
     let youtubeID = image.dataset["youtube"],
         type      = image.dataset["embedType"],
-        time      = image.dataset["embedTime"],
-        title     = image.getAttribute("alt"),
-        width     = image.getAttribute('width'),
-        height    = image.getAttribute('height'),
+        time      = image.dataset["embedTime"] || '2000',
+        title     = image.getAttribute("alt") || 'Iframe',
+        width     = image.getAttribute('width') || '',
+        height    = image.getAttribute('height') || '',
         src       = image.dataset["src"];
     const iframe = document.createElement('iframe');
     iframe.setAttribute('class', 'optimized-embed');
     iframe.setAttribute('frameborder', '0');
     iframe.setAttribute('title', title);
-    iframe.setAttribute('width', width);
-    iframe.setAttribute('height', height);
+    if (width)  iframe.setAttribute('width', width);
+    if (height) iframe.setAttribute('height', height);
     iframe.setAttribute('src', src);
     function generateIframe() {
       image.replaceWith(iframe);
     }
-    if (image.dataset["youtube"]){
-      image.setAttribute("src", "https://img.youtube.com/vi/"+ youtubeID +"/hqdefault.jpg");
-    }
+    if (image.dataset["youtube"]) image.setAttribute("src", "https://img.youtube.com/vi/"+ youtubeID +"/hqdefault.jpg");
     switch (type) {
       case 'onclick':
         image.addEventListener('click', generateIframe);
@@ -31,18 +29,19 @@ function embedOptimize() {
       case 'ondelay':
         setTimeout(function(){ generateIframe(); }, time);
         break;
+      default:
       case 'onvisible':
-          const halfWindow = window.innerHeight * 0.8;
-          function isOnView() {
-            alternativeImages.forEach(function(selectedImage) {
-              const imageTop = selectedImage.getBoundingClientRect().top;
-              const isSectionVisible = (imageTop - halfWindow) < 0;
-              if(isSectionVisible)
-                generateIframe();
-            })
-          }
-          isOnView();
-          window.addEventListener('scroll', isOnView);
+        const halfWindow = window.innerHeight * 0.8;
+      function isOnView() {
+        alternativeImages.forEach(function(selectedImage) {
+          const imageTop = selectedImage.getBoundingClientRect().top;
+          const isSectionVisible = (imageTop - halfWindow) < 0;
+          if(isSectionVisible)
+            generateIframe();
+        })
+      }
+      isOnView();
+      window.addEventListener('scroll', isOnView);
       break;
     }
   });
