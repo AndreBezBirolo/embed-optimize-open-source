@@ -38,6 +38,7 @@ Esse valores são passados no data embed type do IMG.
 - data-embed-type. (onclick, onmouseover, ondelay, onvisible).
 - data-embed-time (em MS)(Utilizado apenas no tipo ondelay).
 - data-youtube (Passar o ID do vídeo, caso seja Youtube).
+- data-youtube-button (Adicionar um botão de play no video, caso não queira o default passe uma URL)
 - data-maps (Passar o código presente após o ../maps/{código} em incorporar um mapa).
 ```
 
