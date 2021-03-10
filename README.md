@@ -1,4 +1,4 @@
-# Embed Optimzie
+# Embed Optimzie - IFRAME
 
 O projeto "Embed's Optimized" foi desenvolvido por André J. Bez Birolo com um intuito de transformar embed's e scripts externos mais performáticos trazendo para seus projetos mais velocidade e boas práticas de HTML.
 
@@ -17,7 +17,7 @@ Basta você ter HTML e JavaScript.
 
 ### 🔧 Explicando os eventos 
 
-Nossa função javascript tem atualmente (09/03/2021) 4 casos possíveis de utilização, são eles:
+Nossa função javascript tem atualmente (10/03/2021) 4 casos possíveis de utilização, são eles:
 
 ```
 1. Quando o usuário clicar na imagem substituta do embed. **(onclick)**
@@ -33,19 +33,20 @@ Esse valores são passados no data embed type do IMG.
 - Width.
 - Height.
 - Alt.
+- data-background-url (Imagem que irá aparecer antes do carregamento do seu iframe).
 - data-src (src do seu iframe).
 - data-embed-type. (onclick, onmouseover, ondelay, onvisible).
 - data-embed-time (em MS)(Utilizado apenas no tipo ondelay).
 - data-youtube (Passar o ID do vídeo, caso seja Youtube).
+- data-maps (Passar o código presente após o ../maps/{código} em incorporar um mapa).
 ```
 
 ## ⚙️ Testando para ver se está tudo ok!
 
 Código exemplo em HTML:
 ```
-<img class="optimized-embed" alt="Meu Iframe" data-embed-type="/type/" data-embed-time="/time/" data-src="https://meuiframe.com.br" width="100" height="100">
+<iframe title="Meu Iframe" data-background-url="/url/" data-youtube="/ID/" data-youtube-button="/URL/" data-maps="/código/" data-embed-type="/type/" data-embed-time="/time/" data-src="https://meuiframe.com.br" width="100" height="100"></frame>
 ```
-Observação: existe uma classe especifica que deve ser colocada na tag IMG (optimized-embed).
 
 ## 📦 Resultados
 
@@ -54,13 +55,8 @@ Ao fazermos nosso embed carregar apenas quando é necessário, isso evita que sc
 
 ## 📌 Versão
 
-v1.1 - Implementado o suporte ao Youtube.
 
-- Um novo data foi criado na tag IMG de forma opcional para indicar se é vídeo do youtube ou não. [data-youtube]
-- Caso haver esse atributo será utilizado a thumbnail do vídeo na imagem. Observação: é importante colocar um src na imagem de carregando ou do seu gosto para não aparecer apenas o texto alternativo até carregar a imagem.
-
-
-v1.0 - Código inicial do projeto.
+v1.0 - Código inicial do projeto. Contendo implementação de suporte à Google Maps e YouTube.
 
 ## 📄 Licença
 
