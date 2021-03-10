@@ -5,7 +5,7 @@ function embedOptimize() {
         type          = item.dataset["embedType"],
         time          = item.dataset["embedTime"] || '2000',
         title         = item.getAttribute('title') || 'Iframe',
-        srcEmbed      = item.dataset["src"],
+        srcEmbed      = item.dataset["src"] || '',
         youtubeID     = item.dataset["youtube"],
         thumbnailSRC  = "https://img.youtube.com/vi/"+ youtubeID +"/hqdefault.jpg",
         mapsID        = item.dataset["maps"];
