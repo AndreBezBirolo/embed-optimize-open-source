@@ -1,30 +1,35 @@
 function embedOptimize() {
-  let alternativeImages = document.querySelectorAll('img.optimized-embed');
-  alternativeImages.forEach(function(image) {
-    let youtubeID = image.dataset["youtube"],
-        type      = image.dataset["embedType"],
-        time      = image.dataset["embedTime"] || '2000',
-        title     = image.getAttribute("alt") || 'Iframe',
-        width     = image.getAttribute('width') || '',
-        height    = image.getAttribute('height') || '',
-        src       = image.dataset["src"];
-    const iframe = document.createElement('iframe');
-    iframe.setAttribute('class', 'optimized-embed');
-    iframe.setAttribute('frameborder', '0');
-    iframe.setAttribute('title', title);
-    if (width)  iframe.setAttribute('width', width);
-    if (height) iframe.setAttribute('height', height);
-    iframe.setAttribute('src', src);
-    function generateIframe() {
-      image.replaceWith(iframe);
+  let alternativeIframes = document.querySelectorAll('iframe');
+  alternativeIframes.forEach(function(item) {
+    let backgroundURL = item.dataset["backgroundUrl"],
+        type          = item.dataset["embedType"],
+        time          = item.dataset["embedTime"] || '2000',
+        title         = item.getAttribute('title') || 'Iframe',
+        srcEmbed      = item.dataset["src"],
+        youtubeID     = item.dataset["youtube"],
+        thumbnailSRC  = "https://img.youtube.com/vi/"+ youtubeID +"/hqdefault.jpg",
+        mapsID        = item.dataset["maps"];
+    item.setAttribute('frameborder', '0');
+    item.contentWindow.document.body.setAttribute('style', 'cursor: pointer;');
+    if (item.dataset["youtube"]) {
+      let urlButton = item.dataset["youtubeButton"] || "http://addplaybuttontoimage.way4info.net/Images/Icons/20.png";
+      item.setAttribute('style', "background: url("+ urlButton +") no-repeat center center ,url("+ thumbnailSRC +") center center no-repeat; background-size: 75px, cover;");
+    } else {
+      item.setAttribute('style', "background: url("+ backgroundURL +") center center no-repeat; background-size: cover;")
     }
-    if (image.dataset["youtube"]) image.setAttribute("src", "https://img.youtube.com/vi/"+ youtubeID +"/hqdefault.jpg");
+    function generateIframe() {
+      item.setAttribute('title', title);
+      if      (item.dataset["youtube"]) src = "https://www.youtube.com/embed/"+ youtubeID +"?autoplay=1&mute=1";
+      else if (item.dataset["maps"])    src = "https://www.google.com.br/maps/" + mapsID;
+      else                              src = srcEmbed;
+      item.setAttribute('src', src)
+    }
     switch (type) {
       case 'onclick':
-        image.addEventListener('click', generateIframe);
+        item.contentWindow.addEventListener('click', generateIframe, {once : true});
         break;
       case 'onmouseover':
-        image.addEventListener('mouseover', generateIframe);
+        item.addEventListener('mouseover', generateIframe, {once : true});
         break;
       case 'ondelay':
         setTimeout(function(){ generateIframe(); }, time);
@@ -33,9 +38,9 @@ function embedOptimize() {
       case 'onvisible':
         const halfWindow = window.innerHeight * 0.8;
       function isOnView() {
-        alternativeImages.forEach(function(selectedImage) {
-          const imageTop = selectedImage.getBoundingClientRect().top;
-          const isSectionVisible = (imageTop - halfWindow) < 0;
+        alternativeIframes.forEach(function(selectedImage) {
+          const itemTop = selectedImage.getBoundingClientRect().top;
+          const isSectionVisible = (itemTop - halfWindow) < 0;
           if(isSectionVisible)
             generateIframe();
         })
