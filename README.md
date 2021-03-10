@@ -37,6 +37,7 @@ Esse valores são passados no data embed type do IMG.
 - data-embed-type. (onclick, onmouseover, ondelay, onvisible).
 - data-embed-time (em MS)(Utilizado apenas no tipo ondelay).
 - data-youtube (Passar o ID do vídeo, caso seja Youtube).
+Observação: não é necessário passar um SRC na imagem quando utilizado o youtube porque ele irá pegar a thumbnail do video como foto.
 - data-maps (Passar o código presente após o ../maps/{código} em incorporar um mapa).
 ```
 
