@@ -6,7 +6,7 @@ function embedOptimize() {
             title     = image.getAttribute("alt") || 'Iframe',
             width     = image.getAttribute('width'),
             height    = image.getAttribute('height'),
-            src       = image.dataset["src"],
+            src       = image.dataset["src"] || '',
             youtubeID = image.dataset["youtube"],
             mapsID    = image.dataset["maps"];
         const iframe = document.createElement('iframe');
