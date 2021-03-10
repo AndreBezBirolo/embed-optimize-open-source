@@ -9,6 +9,7 @@ function embedOptimize() {
         youtubeID     = item.dataset["youtube"],
         thumbnailSRC  = "https://img.youtube.com/vi/"+ youtubeID +"/hqdefault.jpg",
         mapsID        = item.dataset["maps"];
+    item.setAttribute('title', title);
     item.setAttribute('frameborder', '0');
     item.contentWindow.document.body.setAttribute('style', 'cursor: pointer;');
     if (item.dataset["youtube"]) {
@@ -18,7 +19,6 @@ function embedOptimize() {
       item.setAttribute('style', "background: url("+ backgroundURL +") center center no-repeat; background-size: cover;")
     }
     function generateIframe() {
-      item.setAttribute('title', title);
       if      (item.dataset["youtube"]) src = "https://www.youtube.com/embed/"+ youtubeID +"?autoplay=1&mute=1";
       else if (item.dataset["maps"])    src = "https://www.google.com.br/maps/" + mapsID;
       else                              src = srcEmbed;
