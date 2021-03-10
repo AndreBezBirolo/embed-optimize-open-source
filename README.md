@@ -1,4 +1,4 @@
-# Embed Optimzie - IFRAME
+# Embed Optimize - IFRAME
 
 O projeto "Embed's Optimized" foi desenvolvido por André J. Bez Birolo com um intuito de transformar embed's e scripts externos mais performáticos trazendo para seus projetos mais velocidade e boas práticas de HTML.
 
