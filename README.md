@@ -23,7 +23,7 @@ Nossa função javascript tem atualmente (09/03/2021) 4 casos possíveis de util
 1. Quando o usuário clicar na imagem substituta do embed. **(onclick)**
 2. Quando o usuário passar o mouse em cima da imagem substituta. **(onmouseover)**
 3. Alguns segundos após o carregamento do DOM da página. **(ondelay)**
-4. Quando a imagem ficar visível para o usuário.  **(onvisible)**
+4. Quando a imagem ficar visível para o usuário. -Default-  **(onvisible)**
 ```
 Esse valores são passados no data embed type do IMG.
 
