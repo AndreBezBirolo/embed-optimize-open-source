@@ -37,6 +37,7 @@ Esse valores são passados no data embed type do IMG.
 - data-embed-type. (onclick, onmouseover, ondelay, onvisible).
 - data-embed-time (em MS)(Utilizado apenas no tipo ondelay).
 - data-youtube (Passar o ID do vídeo, caso seja Youtube).
+- data-maps (Passar o código presente após o ../maps/{código} em incorporar um mapa).
 ```
 
 ## ⚙️ Testando para ver se está tudo ok!
@@ -53,6 +54,8 @@ Ao fazermos nosso embed carregar apenas quando é necessário, isso evita que sc
 
 
 ## 📌 Versão
+
+v1.2 - Implementado o suporte ao Google Maps
 
 v1.1 - Implementado o suporte ao Youtube.
 
