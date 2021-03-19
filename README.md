@@ -17,7 +17,7 @@ Basta você ter HTML e JavaScript.
 
 ### 🔧 Explicando os eventos 
 
-Nossa função javascript tem atualmente (09/03/2021) 4 casos possíveis de utilização, são eles:
+Nossa função javascript tem atualmente (19/03/2021) 4 casos possíveis de utilização, são eles:
 
 ```
 1. Quando o usuário clicar na imagem substituta do embed. **(onclick)**
@@ -33,21 +33,21 @@ Esse valores são passados no data embed type do IMG.
 - Width.
 - Height.
 - Alt.
-- data-src (src do seu iframe).
+- data-src (src do seu iframe, caso seja google maps ou pdf).
 - data-embed-type. (onclick, onmouseover, ondelay, onvisible).
 - data-embed-time (em MS)(Utilizado apenas no tipo ondelay).
-- data-youtube (Passar o ID do vídeo, caso seja Youtube).
-Observação: não é necessário passar um SRC na imagem quando utilizado o youtube porque ele irá pegar a thumbnail do video como foto.
-- data-maps (Passar o código presente após o ../maps/{código} em incorporar um mapa).
+- data-media (Passar a url do seu vídeo seja ele no YouTube ou Vimeo, *).
+Observação: Não necessário passar o data-src porque será puxado a thumbnail automaticamente*.
+- data-maps (Passar o código presente após o ../maps/{código} em incorporar um mapa, depois de clicar em compartilhar).
 ```
 
 ## ⚙️ Testando para ver se está tudo ok!
 
 Código exemplo em HTML:
 ```
-<img class="optimized-embed" alt="Meu Iframe" data-embed-type="/type/" data-embed-time="/time/" data-src="https://meuiframe.com.br" width="100" height="100">
+<img class="embed-optimize" alt="Meu Iframe" data-embed-type="/type/" data-embed-time="/time/" data-src="https://meuiframe.com.br" data-media="https://youtu.be/hPZXtCHzdPw" width="100" height="100">
 ```
-Observação: existe uma classe especifica que deve ser colocada na tag IMG (optimized-embed).
+Observação: existe uma classe especifica que deve ser colocada na tag IMG (embed-optimize).
 
 ## 📦 Resultados
 
@@ -55,8 +55,11 @@ Ao fazermos nosso embed carregar apenas quando é necessário, isso evita que sc
 
 
 ## 📌 Versão
+v2.0 - Implementado o suporte ao Vimeo.
+     - Facilitado a utilização.
+     - Reestruturação do código.
 
-v1.2 - Implementado o suporte ao Google Maps
+v1.2 - Implementado o suporte ao Google Maps.
 
 v1.1 - Implementado o suporte ao Youtube.
 
