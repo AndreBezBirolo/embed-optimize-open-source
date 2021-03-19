@@ -38,6 +38,7 @@ Esse valores são passados no data embed type do IMG.
 - data-embed-time (em MS)(Utilizado apenas no tipo ondelay).
 - data-media (Passar a url do seu vídeo seja ele no YouTube ou Vimeo, *).
 Observação: Não necessário passar o data-src porque será puxado a thumbnail automaticamente*.
+- data-player-button (Passar url da sua imagem de player, caso não tenha, não tem problema, foi colocado uma padrão.)
 - data-maps (Passar o código presente após o ../maps/{código} em incorporar um mapa, depois de clicar em compartilhar).
 ```
 
