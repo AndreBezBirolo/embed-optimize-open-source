@@ -56,8 +56,9 @@ Ao fazermos nosso embed carregar apenas quando é necessário, isso evita que sc
 
 ## 📌 Versão
 v2.0 - Implementado o suporte ao Vimeo.
-     - Facilitado a utilização.
-     - Reestruturação do código.
+
+- Facilitado a utilização.
+- Reestruturação do código.
 
 v1.2 - Implementado o suporte ao Google Maps.
 
