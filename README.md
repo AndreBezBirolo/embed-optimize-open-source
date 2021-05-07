@@ -17,7 +17,8 @@ Basta você ter HTML e JavaScript.
 
 ### 🔧 Explicando os eventos 
 
-Nossa função javascript tem atualmente (19/03/2021) 4 casos possíveis de utilização, são eles:
+Nossa função javascript tem atualmente (07/05/2021) 4 casos possíveis de utilização, são eles:
+Obs: não é obrigatório passar um valor, por padrão vem o "onvisible".
 
 ```
 1. Quando o usuário clicar na imagem substituta do embed. **(onclick)**
@@ -30,25 +31,27 @@ Esse valores são passados no data embed type do IMG.
 ### 🔧 Explicando os parametros dentro da tag IMG
 
 ```
-- Width.
-- Height.
-- Alt.
-- data-src (src do seu iframe, caso seja google maps ou pdf).
+- Width. *
+- Height. *
+- Alt. *
+- data-embed-src (src do seu iframe, caso seja um pdf).
 - data-embed-type. (onclick, onmouseover, ondelay, onvisible).
 - data-embed-time (em MS)(Utilizado apenas no tipo ondelay).
-- data-media (Passar a url do seu vídeo seja ele no YouTube ou Vimeo, *).
-Observação: Não necessário passar o data-src porque será puxado a thumbnail automaticamente*.
-- data-player-button (Passar url da sua imagem de player, caso não tenha, não tem problema, foi colocado uma padrão.)
-- data-maps (Passar o código presente após o ../maps/{código} em incorporar um mapa, depois de clicar em compartilhar).
+- data-embed-video (Passar a url do seu vídeo seja ele no YouTube ou Vimeo).
+Observação: Não necessário passar o data-src porque será puxado a thumbnail automaticamente.
+- data-embed-player-button (Passar url da sua imagem de player, caso não tenha, não tem problema, foi colocado uma padrão.)
+- data-embed-maps (Passar o código presente após o ../maps/{código} em incorporar um mapa, depois de clicar em compartilhar).
+
+* OBRIGATÓRIO
 ```
 
 ## ⚙️ Testando para ver se está tudo ok!
 
 Código exemplo em HTML:
 ```
-<img class="embed-optimize" alt="Meu Iframe" data-embed-type="/type/" data-embed-time="/time/" data-src="https://meuiframe.com.br" data-media="https://youtu.be/hPZXtCHzdPw" width="100" height="100">
+<img class="embed-optimize" alt="Meu Iframe" data-embed-type="/type/" data-embed-time="/time/" data-embed-src="https://meuiframe.com.br" data-embed-video="https://youtu.be/hPZXtCHzdPw" width="100" height="100">
 ```
-Observação: existe uma classe especifica que deve ser colocada na tag IMG (embed-optimize).
+Observação: existe uma classe especifica que deve ser colocada na tag IMG que é embed-optimize.
 
 ## 📦 Resultados
 
@@ -56,6 +59,9 @@ Ao fazermos nosso embed carregar apenas quando é necessário, isso evita que sc
 
 
 ## 📌 Versão
+
+v2.1 - Implementação de boas práticas e correções de bugs.
+
 v2.0 - Implementado o suporte ao Vimeo.
 
 - Facilitado a utilização.
