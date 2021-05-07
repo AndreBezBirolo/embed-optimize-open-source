@@ -1,117 +1,108 @@
 document.addEventListener("DOMContentLoaded", function () {
-  async function EmbedOptimizer() {
-    let alternativeImages = document.querySelectorAll('img.embed-optimize');
-    for (let element of alternativeImages) {
-      let type = element.dataset["embedType"],
-        time = element.dataset["embedTime"] || '2000',
-        title = element.getAttribute("alt") || 'Iframe',
-        width = element.getAttribute('width'),
-        height = element.getAttribute('height'),
-        src = element.dataset["src"],
-        youtubeID,
-        vimeoID,
-        thumbButtonPlayer = element.dataset["playerButton"] || 'https://addplaybuttontoimage.way4info.net/Images/Icons/20.png',
-        mapsID = element.dataset["maps"],
-        mediaURL = element.dataset["media"];
+  function EmbedOptimizer() {
+
+    const EMBED_ITEMS = document.querySelectorAll('img.embed-optimize');
+
+    for (let IMG of EMBED_ITEMS) {
+
+      const TYPE              = IMG.dataset['embedType'];
+      const TIME              = IMG.dataset['embedTime'] || '2000';
+      const BUTTON_PLAYER_URL = IMG.dataset['embedPlayerButton'] || 'https://addplaybuttontoimage.way4info.net/Images/Icons/20.png';
+      const MAPS_ID           = IMG.dataset['embedMaps'];
+      const VIDEO_URL         = IMG.dataset['embedVideo'];
+      const SRC               = IMG.dataset['embedSrc'];
+      const TITLE             = IMG.getAttribute('alt') || 'Iframe';
+      const WIDTH             = IMG.getAttribute('width');
+      const HEIGHT            = IMG.getAttribute('height');
+      let youtubeID;
+      let vimeoID;
+
+      const IFRAME = document.createElement('iframe');
+      IFRAME.setAttribute('class', 'embed-optimize');
+      IFRAME.setAttribute('frameborder', '0');
+      IFRAME.setAttribute('title', TITLE);
+      IFRAME.setAttribute('width', WIDTH);
+      IFRAME.setAttribute('height', HEIGHT);
+      MAPS_ID ? IFRAME.setAttribute('src', `https://www.google.com.br/maps/${MAPS_ID}`) : IFRAME.setAttribute('src', SRC)
 
 
-      const iframe = document.createElement('iframe');
-      iframe.setAttribute('class', 'embed-optimize');
-      iframe.setAttribute('frameborder', '0');
-      iframe.setAttribute('title', title);
-      if (width) iframe.setAttribute('width', width);
-      if (height) iframe.setAttribute('height', height);
-      if (mapsID) iframe.setAttribute('src', "https://www.google.com.br/maps/" + mapsID)
-      else iframe.setAttribute('src', src)
+      if (VIDEO_URL) {
 
+        const YOUTUBE_1 = VIDEO_URL.match(/embed\/([a-z0-9_A-Z=:#*%-]*)/);
+        const YOUTUBE_2 = VIDEO_URL.match(/watch\?v=([a-z0-9_A-Z=:#*%-]*)/);
+        const VIMEO_1   = VIDEO_URL.match(/video\/([a-z0-9_A-Z=:#*%-]*)/);
+        const VIMEO_2   = VIDEO_URL.match(/vimeo\.com\/([a-z0-9_A-Z=:#*%-]*)/);
 
-      if (mediaURL) {
-        const youtube_1 = mediaURL.match(/embed\/([a-z0-9_A-Z=:#*%-]*)/),
-          youtube_2 = mediaURL.match(/watch\?v=([a-z0-9_A-Z=:#*%-]*)/),
-          vimeo_1 = mediaURL.match(/video\/([a-z0-9_A-Z=:#*%-]*)/),
-          vimeo_2 = mediaURL.match(/vimeo\.com\/([a-z0-9_A-Z=:#*%-]*)/);
+        if (YOUTUBE_1) youtubeID      = YOUTUBE_1[1]
+        else if (YOUTUBE_2) youtubeID = YOUTUBE_2[1]
+        else if (VIMEO_1) vimeoID     = VIMEO_1[1]
+        else if (VIMEO_2) vimeoID     = VIMEO_2[1]
 
-        if (youtube_1) youtubeID = youtube_1[1]
-        else if (youtube_2) youtubeID = youtube_2[1]
-        else if (vimeo_1) vimeoID = vimeo_1[1]
-        else if (vimeo_2) vimeoID = vimeo_2[1]
-
-
-        const playerButton = document.createElement('div');
-        playerButton.style.content = ''
-        playerButton.style.display = 'block'
-        playerButton.style.position = 'absolute'
-        playerButton.style.width = '100%'
-        playerButton.style.height = '100%'
-        playerButton.style.top = '0'
-        playerButton.style.background = 'url("' + thumbButtonPlayer + '") center center no-repeat'
-        playerButton.style.backgroundSize = '75px'
+        const PLAYER_BUTTON = document.createElement('div');
+        PLAYER_BUTTON.style.content = '';
+        PLAYER_BUTTON.style.display = 'block';
+        PLAYER_BUTTON.style.position = 'absolute';
+        PLAYER_BUTTON.style.width = '100%';
+        PLAYER_BUTTON.style.height = '100%';
+        PLAYER_BUTTON.style.top = '0';
+        PLAYER_BUTTON.style.background = `url(" ${BUTTON_PLAYER_URL} ") center center no-repeat`;
+        PLAYER_BUTTON.style.backgroundSize = '75px';
 
         let elementSwitch = document.createElement('div');
         elementSwitch.classList.add('embed-optimize-container');
 
-        if (width) elementSwitch.style.width = width;
-        if (height) elementSwitch.style.height = height;
+        if (WIDTH) elementSwitch.style.width = WIDTH;
+        if (HEIGHT) elementSwitch.style.height = HEIGHT;
         elementSwitch.style.position = 'relative';
 
         if (youtubeID) {
-
-          element.setAttribute("src", "https://img.youtube.com/vi/" + youtubeID + "/hqdefault.jpg");
-          element.style.objectFit = "cover";
-          iframe.setAttribute("src", "https://www.youtube.com/embed/" + youtubeID + "?autoplay=1&mute=1");
-
-          elementSwitch.appendChild(element.cloneNode(true))
-          element.replaceWith(elementSwitch)
-          elementSwitch.appendChild(playerButton)
-          element = elementSwitch
-
+          IMG.setAttribute("src", `https://img.youtube.com/vi/${youtubeID}/hqdefault.jpg`);
+          IMG.style.objectFit = "cover";
+          IFRAME.setAttribute("src", `https://www.youtube.com/embed/${youtubeID}?autoplay=1&mute=1`);
+          replaceBlocks(elementSwitch, PLAYER_BUTTON);
         } else if (vimeoID) {
-          await fetch(`https://vimeo.com/api/v2/video/${vimeoID}.json`)
-            .then(response => {
-              return response.text();
-            })
-            .then(data => {
-              const {thumbnail_large} = JSON.parse(data)[0];
-              const large = `${thumbnail_large}`;
-              element.setAttribute("src", large);
-            })
-            .catch(error => {
-              console.log(error);
-            });
-          element.style.objectFit = "cover";
-          iframe.setAttribute("src", "https://player.vimeo.com/video/" + vimeoID + "?autoplay=1&loop=1&muted=1");
-          elementSwitch.appendChild(element.cloneNode(true))
-          element.replaceWith(elementSwitch)
-          elementSwitch.appendChild(playerButton)
-          element = elementSwitch
-
+          async function fetchVimeo(url) {
+            const response = await fetch(url).then((response) => response.json());
+            const {thumbnail_large} = await response[0];
+            IMG.setAttribute("src", thumbnail_large);
+            replaceBlocks(elementSwitch, PLAYER_BUTTON)
+          }
+          fetchVimeo(`https://vimeo.com/api/v2/video/${vimeoID}.json`);
+          IMG.style.objectFit = "cover";
+          IFRAME.setAttribute("src", `https://player.vimeo.com/video/${vimeoID}?autoplay=1&loop=1&muted=1`);
         }
       }
 
-      function generateIframe() {
-        element.replaceWith(iframe);
+      function replaceBlocks(elementSwitch, PLAYER_BUTTON) {
+        elementSwitch.appendChild(IMG.cloneNode(true));
+        IMG.replaceWith(elementSwitch);
+        elementSwitch.appendChild(PLAYER_BUTTON);
+        IMG = elementSwitch;
       }
 
+      function generateIframe() {
+        IMG.replaceWith(IFRAME);
+      }
 
-      switch (type) {
+      switch (TYPE) {
         case 'onclick':
-          element.style.cursor = "pointer";
-          element.addEventListener('click', generateIframe);
+          IMG.style.cursor = "pointer";
+          IMG.addEventListener('click', generateIframe);
           break;
         case 'onmouseover':
-          element.addEventListener('mouseover', generateIframe);
+          IMG.addEventListener('mouseover', generateIframe);
           break;
         case 'ondelay':
           setTimeout(function () {
             generateIframe();
-          }, time);
+          }, TIME);
           break;
         default:
         case 'onvisible':
           const halfWindow = window.innerHeight * 0.8;
 
         function isOnView() {
-          const elementTop = element.getBoundingClientRect().top;
+          const elementTop = IMG.getBoundingClientRect().top;
           const isSectionVisible = (elementTop - halfWindow) < 0;
           if (isSectionVisible) generateIframe();
         }
@@ -120,8 +111,6 @@ document.addEventListener("DOMContentLoaded", function () {
           window.addEventListener('scroll', isOnView);
           break;
       }
-
-
     }
   }
 
